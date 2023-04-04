@@ -62,9 +62,9 @@ public class UserRepository {
         Session session = sf.openSession();
         try {
             session.beginTransaction();
-            User user = new User();
-            user.setId(userId);
-            session.delete(user);
+            session.createQuery("DELETE User WHERE id = :id")
+                    .setParameter("id", userId)
+                    .executeUpdate();
             session.getTransaction().commit();
         } catch (Exception exception) {
             session.getTransaction().rollback();
