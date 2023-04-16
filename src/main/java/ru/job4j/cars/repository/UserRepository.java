@@ -52,7 +52,6 @@ public class UserRepository {
      */
     public List<User> findAllOrderById() {
         return crudRepository.query("from User order by id asc", User.class);
-
     }
 
     /**
