@@ -29,14 +29,15 @@ public class ParticipatesRun {
                     new PriceHistory(0, 700, 650)
             ));
             post.setParticipates(List.of(user));
-            create(post,sf);
+            create(post, sf);
             sf.openSession()
                     .createQuery("from Post where id = :fId", Post.class)
                     .setParameter("fId", post.getId())
                     .getSingleResult()
                     .getParticipates()
                     .forEach(System.out::println);
-        }  catch (Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);
