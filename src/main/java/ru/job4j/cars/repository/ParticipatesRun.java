@@ -18,7 +18,7 @@ public class ParticipatesRun {
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             var user = new User();
-            user.setLogin("Admin2");
+            user.setLogin("Admin9");
             user.setPassword("password");
             create(user, sf);
             var post = new Post();
@@ -36,7 +36,6 @@ public class ParticipatesRun {
                     .getSingleResult()
                     .getParticipates()
                     .forEach(System.out::println);
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
