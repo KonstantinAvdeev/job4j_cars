@@ -21,7 +21,7 @@ public class PriceHistoryUsage {
             var postRepository = new PostRepository(crudRepository);
             var userRepository = new UserRepository(crudRepository);
             var user = new User();
-            user.setLogin("admin");
+            user.setLogin("admin4");
             user.setPassword("password");
             userRepository.create(user);
             var post = new Post();
@@ -40,18 +40,7 @@ public class PriceHistoryUsage {
                     .ifPresent(System.out::println);
             priceHistoryRepository.findAllOrderById()
                     .forEach(System.out::println);
-            priceHistory1.setAfter(350);
-            priceHistoryRepository.findAllOrderById()
-                    .forEach(System.out::println);
             priceHistoryRepository.findByPostId(post.getId())
-                    .forEach(System.out::println);
-            priceHistoryRepository.findById(priceHistory1.getId())
-                    .ifPresent(System.out::println);
-            priceHistoryRepository.delete(priceHistory1.getId());
-            priceHistoryRepository.delete(priceHistory2.getId());
-            postRepository.delete(post.getId());
-            userRepository.delete(user.getId());
-            priceHistoryRepository.findAllOrderById()
                     .forEach(System.out::println);
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);

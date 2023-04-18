@@ -2,7 +2,6 @@ package ru.job4j.cars.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,7 +19,7 @@ public class Post {
     private int id;
     private String description;
     private LocalDateTime created = LocalDateTime.now();
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "auto_user_id", nullable = false)
     private User user;
     @OneToMany(cascade = CascadeType.ALL)
@@ -30,8 +29,8 @@ public class Post {
     @ManyToMany
     @JoinTable(
             name = "participates",
-            joinColumns = {@JoinColumn(name = "post_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_id")}
+            joinColumns = {@JoinColumn(name = "post_id", nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false)}
     )
     private List<User> participates = new ArrayList<>();
 }
