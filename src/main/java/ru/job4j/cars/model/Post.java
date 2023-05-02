@@ -22,7 +22,7 @@ public class Post {
     @ManyToOne()
     @JoinColumn(name = "auto_user_id", nullable = false)
     private User user;
-    @OneToOne
+    @ManyToOne
     @JoinTable(name = "car_id")
     private Car car;
     @OneToMany(cascade = CascadeType.ALL)
