@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Post;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -46,6 +47,24 @@ public class PostRepository {
                 "from Post where auto_user_id = :userId", Post.class,
                 Map.of("userId", userId)
         );
+    }
+
+    public List<Post> findByCarBrand(String carBrand) {
+        return crudRepository.query(
+                "from Post p JOIN FETCH p.car where p.car.name = :carBrand", Post.class,
+                Map.of("carBrand", carBrand)
+        );
+    }
+
+    public List<Post> findPostWithPhotos() {
+        return crudRepository.query("from Post p JOIN FETCH p.files WHERE "
+                + "size(files) > 0", Post.class);
+    }
+
+    public List<Post> findLastDayPosts() {
+        LocalDateTime lastDay = LocalDateTime.now().minusDays(1);
+        return crudRepository.query("from Post p WHERE p.created >= :lastDay",
+                Post.class, Map.of("lastDay", lastDay));
     }
 
 }

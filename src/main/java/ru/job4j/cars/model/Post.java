@@ -29,6 +29,10 @@ public class Post {
     @JoinColumn(name = "auto_post_id", nullable = false)
     private List<PriceHistory> priceHistoryList = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "auto_post_id")
+    private List<File> files = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(
             name = "participates",

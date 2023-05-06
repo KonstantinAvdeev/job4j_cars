@@ -17,6 +17,8 @@ public class Car {
     @EqualsAndHashCode.Include
     private int id;
 
+    private String name;
+
     @ManyToOne
     @JoinColumn(name = "engine_id")
     private Engine engine;
